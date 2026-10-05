@@ -1,0 +1,7 @@
+# Producer descriptor for https://github.com/Heapy/ktc-plugins.
+# The installer copies this self-contained module and the root license.
+schemaVersion: 1
+plugins:
+  jib:
+    module: plugins/jib
+    licenseFiles: [LICENSE]

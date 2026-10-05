@@ -1,0 +1,13 @@
+product: jvm/app
+
+settings:
+  jvm:
+    release: 21
+
+plugins:
+  jib:
+    enabled: true
+    mainClass: example.MainKt
+    image: example/ktc-jib:local
+    # Offline artifact fixture: scratch contains no JVM. Use a JRE base to run it.
+    baseImage: scratch

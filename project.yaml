@@ -1,0 +1,6 @@
+modules:
+  - examples/app
+  - plugins/jib
+
+plugins:
+  - //plugins/jib

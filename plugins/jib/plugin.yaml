@@ -1,0 +1,16 @@
+tasks:
+  jibTar:
+    action: !io.github.ktcplugins.jib.buildImageTar
+      application: ${module.jar}
+      runtimeClasspath: ${module.runtimeClasspath}
+      settings: ${pluginSettings}
+      outputDir: ${taskOutputDir}
+  jibPublish:
+    action: !io.github.ktcplugins.jib.publishImageTar
+      imageTar: ${tasks.jibTar.action.outputDir}/image.tar
+      settings: ${pluginSettings}
+      outputDir: ${taskOutputDir}
+
+commands:
+  - jibTar
+  - jibPublish

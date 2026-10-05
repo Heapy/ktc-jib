@@ -1,0 +1,12 @@
+product: jvm/amper-plugin
+
+pluginInfo:
+  id: jib
+  settingsClass: io.github.ktcplugins.jib.JibSettings
+
+dependencies:
+  - com.google.cloud.tools:jib-core:0.28.2
+
+test-dependencies:
+  - org.apache.commons:commons-compress:1.27.1
+  - com.fasterxml.jackson.core:jackson-databind:2.21.1
