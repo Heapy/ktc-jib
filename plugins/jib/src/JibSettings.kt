@@ -1,4 +1,4 @@
-package io.github.ktcplugins.jib
+package io.heapy.ktc.plugins.jib
 
 import org.jetbrains.amper.plugins.Configurable
 

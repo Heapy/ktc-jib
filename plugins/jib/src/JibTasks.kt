@@ -1,4 +1,4 @@
-package io.github.ktcplugins.jib
+package io.heapy.ktc.plugins.jib
 
 import com.google.cloud.tools.jib.api.Containerizer
 import com.google.cloud.tools.jib.api.ImageReference

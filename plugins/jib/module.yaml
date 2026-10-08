@@ -2,7 +2,7 @@ product: jvm/amper-plugin
 
 pluginInfo:
   id: jib
-  settingsClass: io.github.ktcplugins.jib.JibSettings
+  settingsClass: io.heapy.ktc.plugins.jib.JibSettings
 
 dependencies:
   - com.google.cloud.tools:jib-core:0.28.2
