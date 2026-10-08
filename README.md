@@ -9,7 +9,7 @@ Pinned and tested with **Kotlin Toolchain 0.13.0** and **Jib Core 0.28.2**. Apac
 ```sh
 ./kotlin test -m jib
 ./kotlin do jibTar -m app
-python3 scripts/verify-tar.py
+kotlinr scripts/verify-tar.main.kts
 ```
 
 The example deliberately uses `scratch` so image creation and tests need no registry or Docker. **That fixture is not runnable: scratch has no Java runtime.** Change `examples/app/module.yaml` to `baseImage: eclipse-temurin:25-jre` to build a runnable image; the first build then downloads the base image. Select a JRE at least as new as your app's `settings.jvm.release`. Pin production base images by digest for reproducibility.
@@ -96,7 +96,7 @@ This builds the tar if needed, then pushes it to the configured `image` using HT
 
 ## Validation
 
-`./kotlin test -m jib` exercises actual offline tar creation, archive/config metadata, duplicate dependency basenames, deterministic image digests, directory classpaths, bad configuration, missing credentials, and disabled publication. `./kotlin do jibTar -m app` exercises the real Toolchain model and task wiring. `scripts/verify-tar.py` confirms that the fixture image contains the application's class, Kotlin standard library, correct entrypoint, tag, and digest without Docker.
+`./kotlin test -m jib` exercises actual offline tar creation, archive/config metadata, duplicate dependency basenames, deterministic image digests, directory classpaths, bad configuration, missing credentials, and disabled publication. `./kotlin do jibTar -m app` exercises the real Toolchain model and task wiring. `scripts/verify-tar.main.kts` confirms that the fixture image contains the application's class, Kotlin standard library, correct entrypoint, tag, and digest without Docker.
 
 The CI workflow runs those checks on Linux and macOS. Publication behavior is validated before networking; registry uploads and running a JRE-based image require separate integration infrastructure.
 
@@ -111,3 +111,11 @@ A clearly marked validation-only JVM adapter depended on Kotgent's unchanged rea
 `jibPublish` also rejected the default disabled setting and deliberately missing credentials through the real Toolchain command. The missing-credential probe used unique environment variable names removed from the child environment, so existing user registry credentials could not permit a push. Both failures left no publication digest.
 
 Docker's availability check timed out after 10 seconds, so the image was not loaded or run in a container. No registry image was published. The base tag was resolved during the trial, not pinned for subsequent reproduction; production builds should pin a digest as described above. Detailed local evidence and reproducible trial scripts are retained in the sibling `ktc-plugin-trials/2026-10-05/kotgent-jib/validation` directory.
+
+## Running verification scripts
+
+The `.main.kts` scripts require JDK 25 and Kotlin 2.4.21+ (`kotlinr` on `PATH`).
+Run them with `kotlinr scripts/<name>.main.kts` from the repository root.
+The Kotlin Toolchain `./kotlin` command is a separate executable. CI installs the script runner
+through `.github/actions/setup-kotlin-script`; the first script run compiles the script and
+resolves any pinned Maven dependencies. Later runs use the local script cache.
