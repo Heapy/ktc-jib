@@ -10,7 +10,12 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
-      - uses: ./.github/actions/setup-kotlin-script
+      - uses: Heapy/setup-main-kts@b0858237748f325b825e752bbac2ec2eb1fb9419 # v1.0.1
+        with:
+          kotlin-version: '2.4.21'
+          kotlin-sha256: '7cc140e76daf416a0424a5557f99afd7ca89ebd463ea1101261e3e01c33e75cd'
+          java-version: '25'
+          distribution: temurin
       - uses: Heapy/setup-ktc@52e4da5405a2dc056dd0c42ac86390c797d12f5d # v1.0.1
         with:
           version: 0.13.0
