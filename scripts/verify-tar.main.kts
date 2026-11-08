@@ -1,6 +1,6 @@
 #!/usr/bin/env kotlinr
 // Inspect the real fixture image: kotlinr scripts/verify-tar.main.kts
-@file:DependsOn("org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.11.0")
+@file:DependsOn("org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.12.0")
 @file:DependsOn("org.apache.commons:commons-compress:1.28.0")
 
 import java.io.ByteArrayInputStream

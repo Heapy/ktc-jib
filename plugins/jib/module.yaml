@@ -8,5 +8,5 @@ dependencies:
   - com.google.cloud.tools:jib-core:0.28.2
 
 test-dependencies:
-  - org.apache.commons:commons-compress:1.27.1
-  - com.fasterxml.jackson.core:jackson-databind:2.21.1
+  - org.apache.commons:commons-compress:1.28.0
+  - com.fasterxml.jackson.core:jackson-databind:2.23.0
